@@ -6,3 +6,4 @@ streamlit_card
 matplotlib
 selenium
 bs4
+seaborn
