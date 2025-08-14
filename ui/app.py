@@ -10,7 +10,7 @@ from display import show_movie_detail, display_movies_list
 from streamlit_card import card
 
 # --- 데이터 로딩 ---
-@st.cache_data
+@st.cache_data(ttl=0)
 def load_data():
     """CSV 파일을 로드하고 '매력도' 컬럼을 숫자형으로 변환합니다."""
     try:
