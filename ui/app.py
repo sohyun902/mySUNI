@@ -54,7 +54,7 @@ with st.sidebar:
     if st.button("🔄 데이터 업데이트"):
         with st.spinner("데이터를 수집하고 분석 중입니다..."):
             try:
-                main.main()   # subprocess 대신 직접 호출
+                main.main()  
                 st.success("✅ 데이터 업데이트 완료!")
                 st.cache_data.clear()
                 st.rerun()
