@@ -8,6 +8,11 @@ from search import search_movies
 # display.py에서 필요한 함수들을 명확하게 가져옵니다.
 from display import show_movie_detail, display_movies_list
 from streamlit_card import card
+import sys
+import os
+# app.py 기준 상위 폴더를 sys.path에 추가
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+import main
 
 # --- 데이터 로딩 ---
 @st.cache_data(ttl=0)
@@ -49,12 +54,12 @@ with st.sidebar:
     if st.button("🔄 데이터 업데이트"):
         with st.spinner("데이터를 수집하고 분석 중입니다..."):
             try:
-                subprocess.run(["python", "./main.py"], check=True)
+                main.main()   # subprocess 대신 직접 호출
                 st.success("✅ 데이터 업데이트 완료!")
                 st.cache_data.clear()
                 st.rerun()
-            except (subprocess.CalledProcessError, FileNotFoundError):
-                st.error("데이터 업데이트 중 오류가 발생했습니다.")
+            except Exception as e:
+                st.error(f"데이터 업데이트 중 오류 발생: {e}")
 
 # ==========================================================
 # --- ✅ 메인 콘텐츠 표시 (상세 페이지 vs 메인 페이지) ---
